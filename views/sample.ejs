@@ -19,19 +19,25 @@
 <button type="button" id="_answer_1" onclick="Answer_Check(1)">回答1</button>
 <button type="button" id="_answer_2" onclick="Answer_Check(2)">回答2</button>
 <button type="button" id="_answer_3" onclick="Answer_Check(3)">回答3</button>
+<p><%= TEST %></p>
+<% ITEMS.forEach(function (row) { %>
+    <p><%= row.question %></p>
+<%  }); %>
 
 
 <script type="text/javascript">
 // var item = [ 'バナナ', 'リンゴ', 'メロン', 'ブドウ' ];
+/*
 onload = test();
 
 function test(){
-  /*
+
   items.forEach(function( value ) {
      alert( value.ans1 );
-});*/
-  alert(TEST)
+});
+  alert(TEST);
 }
+*/
 /*
 items.forEach(function(boardItem) {
             <li class="main-list__item">

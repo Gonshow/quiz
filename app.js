@@ -6,12 +6,15 @@ var db = new sqlite3.Database('./sample.sqlite3');
 
 app.use(express.static('public'));
 /*接続確認用*/
-/*
-app.get('/', (req, res) => {
-  res.render('hello.ejs');
+
+/*app.get('/', (req, res) => {
+  res.render('hello.ejs',
+  {
+    TEST: 'test'
+  }
+);
 });
 */
-
 /*db.get('SELECT * FROM Q', function(err, row) {
     if (err) {
         throw err;
@@ -24,14 +27,15 @@ db.all('SELECT * FROM Q', function(err, rows) {
     if (err) {
         throw err;
     }
-    //rows.forEach(function (row) {
+    rows.forEach(function (row) {
+        console.log(row.ans1);
+      });
       app.get('/', (req, res) => {
         res.render('sample.ejs', {
-          TEST: 'TEST'
-          //items: rows
+          TEST: 'test',
+          ITEMS: rows
         });
       });
-      //  console.log(row.ans1);
 });
 
 
