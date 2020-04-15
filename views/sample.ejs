@@ -80,10 +80,13 @@ Q_Set();
 
 // 問題を画面に表示する処理
 function Q_Set() {
-Q.innerHTML = Question[Qcnt][0];
-A1.innerHTML = Question[Qcnt][1];
-A2.innerHTML = Question[Qcnt][2];
-A3.innerHTML = Question[Qcnt][3];
+  ITEMS.forEach(function (row) {
+    Q.innerHTML = row.question;
+    A1.innerHTML = row.ans1;
+    A2.innerHTML = row.ans2;
+    A3.innerHTML = row.ans3;
+  });
+
 };
 
 // 回答ボタンを押したときの処理
