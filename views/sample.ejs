@@ -7,37 +7,50 @@
 <body>
 <!--タイトル-->
 <h1>次の英単語の意味を答えなさい</h1>
-<!--クイズのの表示-->
-<h2 id="_question">初めてのJavaScript勉強中だよ！</h2>
 
-<!--回答-->
-<ul>
-<li id="_ans1"></li>
-<li id="_ans2"></li>
-<li id="_ans3"></li>
-</ul>
-<button type="button" id="_answer_1" onclick="Answer_Check(1)">回答1</button>
-<button type="button" id="_answer_2" onclick="Answer_Check(2)">回答2</button>
-<button type="button" id="_answer_3" onclick="Answer_Check(3)">回答3</button>
-<p><%= TEST %></p>
+<!-- 変数定義 -->
+<% var q_list=[]; %>
+<% var a_list=[]; %>
+<% var i = 0; %>
+
+<!--データのlist化 -->
+<%  ITEMS.forEach(function (row) { %>
+    <% q_list[i] = row.question %>
+<%  }); %>
+<%  ITEMS.forEach(function (row) { %>
+    <% a_list[i] = row.question %>
+<%  }); %>
+
+<!--クイズのの表示-->
+
+<h2 id="_question"><%= q_list[0] %></h2>
+
+<!--回答選択肢表示-->
 <% ITEMS.forEach(function (row) { %>
-    <p><%= row.question %></p>
+    <ul>
+      <li id="_ans1"><%= a_list[i] = row.ans %></li>
+    </ul>
+    <% i++; %>
 <%  }); %>
 
 
+<!-- 回答用ボタン -->
+<button type="button" id="_answer_1" onclick="Answer_Check(1)">回答1</button>
+<button type="button" id="_answer_2" onclick="Answer_Check(2)">回答2</button>
+<button type="button" id="_answer_3" onclick="Answer_Check(3)">回答3</button>
+
+<% var test = q_list %>
 <script type="text/javascript">
 // var item = [ 'バナナ', 'リンゴ', 'メロン', 'ブドウ' ];
-/*
+
 onload = test();
-
+const k=[];
+const array = [1, 2, 3];
 function test(){
-
-  items.forEach(function( value ) {
-     alert( value.ans1 );
-});
-  alert(TEST);
+  var getTest = <%= test  %>;
+  alert(getTest);
 }
-*/
+
 /*
 items.forEach(function(boardItem) {
             <li class="main-list__item">
@@ -47,7 +60,6 @@ items.forEach(function(boardItem) {
             </li>
          }); */
 // 初期画面起動時
-
 var Question = [
 ["JavaScriptで「Hello World」を正しく表示されないのはどれ？",
 "1. document.write('Hello World');",
@@ -60,6 +72,13 @@ var Question = [
 "3"],
 ["JavaScriptで余りを求めるのは？","1. /","2. %","3. @","2"]
 ];
+/*var i=0;
+ITEMS.forEach(function (row) {
+    Question[i][0]=row.question;
+    i++;
+  });
+*/
+
 // 初期変数定義
 // 問題を表示するオブジェクトを取得する
 var Q = document.getElementById('_question');
@@ -80,13 +99,10 @@ Q_Set();
 
 // 問題を画面に表示する処理
 function Q_Set() {
-  ITEMS.forEach(function (row) {
-    Q.innerHTML = row.question;
-    A1.innerHTML = row.ans1;
-    A2.innerHTML = row.ans2;
-    A3.innerHTML = row.ans3;
-  });
-
+Q.innerHTML = Question[Qcnt][0];
+A1.innerHTML = Question[Qcnt][1];
+A2.innerHTML = Question[Qcnt][2];
+A3.innerHTML = Question[Qcnt][3];
 };
 
 // 回答ボタンを押したときの処理
